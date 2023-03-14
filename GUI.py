@@ -244,4 +244,67 @@ from tkinter import *
 # window.mainloop()
 
 #-----------------------
-#tentando enviar pro git
+
+#LISTBOX = A listing of selectable text items within it's own container
+from tkinter import *
+def submit():
+    #order = listbox.get(listbox.curselection())
+    # #We use .curselection() to get the current selected values.#SINGLE selection
+    # We may or may not store that in a variable
+    food = []
+    for index in listbox.curselection(): #it is going to iterate once for each item that we selected.
+        food.insert(index,listbox.get(index)) #index = index of a current selection. get(index) = the name/value of the
+       # element referred to that index
+
+    print ('You have ordered: ')
+    for i in food: #we make a for loop to print iterate through the items.
+        print (i)
+
+
+def add():
+    listbox.insert(listbox.size(),entrybox.get()) #for the add function we must insert an element on the listbox
+#to insert a element, we need to pick the index of this element, and what element will be.
+#listbox.size() gives us the current amount of elements of our list.
+#entrybox.get() will give us the value inside the entrybox. That is, all the user input for the new item/element.
+    listbox.config(height=listbox.size() + 2) #for each new item, our list will be ajusted. We have already write
+# this code down bellow, but this is necessary for after running changes.
+def delete():
+   # listbox.delete(listbox.curselection()) #deletes our listbox current selection #for SINGLE selection
+    for index in reversed(listbox.curselection()): #We used 'reversed' to not change the indexes after we delete an item
+        listbox.delete(index)
+    listbox.config(height=listbox.size() + 2) #to adjust our list height after we change an item.
+window = Tk()
+
+listbox = Listbox(window,fg='#fcba03', bg='black',font=('Ink free',20),
+                  selectmode=MULTIPLE #Allows you to select multiple items. #But it obly us to make some
+                  # changes in our code. We have to turn the functions into functions for multiples items (for loop).
+                  )
+listbox.pack()
+listbox.insert(1,"pizza") #We pick an index and place a value for that index.
+listbox.insert(2,"cake")
+listbox.insert(3,"bread")
+listbox.insert(4,"salad")
+listbox.insert(5,"chicken")
+
+listbox.config(height=listbox.size()+2) #We use .config to change any options.
+#In this case, we are configuring a height for our listbox, that height equals the listbox size. That is,
+#the height of our list will be adjusted by the size (amount and size of elements in) that list
+#if we add or remove an element, it will automatically change the height of our list.
+#we can add a value to that function in order to have some space in our list. This value equals to a invisible element
+#so it'll have the same font's size.
+#this code placed here only adjusts for before running changes
+
+entrybox = Entry(window)
+entrybox.pack()
+
+addButton = Button(window,text='Add an item',command=add)
+addButton.pack()
+
+deleteButton = Button(window,text='Delete an item',command=delete)
+deleteButton.pack()
+
+submitbutton = Button(window,text='submit',command=submit)
+submitbutton.pack()
+
+window.mainloop()
+
