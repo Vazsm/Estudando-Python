@@ -246,65 +246,218 @@ from tkinter import *
 #-----------------------
 
 #LISTBOX = A listing of selectable text items within it's own container
-from tkinter import *
-def submit():
+# from tkinter import *
+# def submit():
     #order = listbox.get(listbox.curselection())
     # #We use .curselection() to get the current selected values.#SINGLE selection
     # We may or may not store that in a variable
-    food = []
-    for index in listbox.curselection(): #it is going to iterate once for each item that we selected.
-        food.insert(index,listbox.get(index)) #index = index of a current selection. get(index) = the name/value of the
+    # food = []
+    # for index in listbox.curselection(): #it is going to iterate once for each item that we selected.
+    #     food.insert(index,listbox.get(index)) #index = index of a current selection. get(index) = the name/value of the
        # element referred to that index
 
-    print ('You have ordered: ')
-    for i in food: #we make a for loop to print iterate through the items.
-        print (i)
+    # print ('You have ordered: ')
+    # for i in food: #we make a for loop to print iterate through the items.
+    #     print (i)
 
 
-def add():
-    listbox.insert(listbox.size(),entrybox.get()) #for the add function we must insert an element on the listbox
+# def add():
+#     listbox.insert(listbox.size(),entrybox.get()) #for the add function we must insert an element on the listbox
 #to insert a element, we need to pick the index of this element, and what element will be.
 #listbox.size() gives us the current amount of elements of our list.
 #entrybox.get() will give us the value inside the entrybox. That is, all the user input for the new item/element.
-    listbox.config(height=listbox.size() + 2) #for each new item, our list will be ajusted. We have already write
+    # listbox.config(height=listbox.size() + 2) #for each new item, our list will be ajusted. We have already write
 # this code down bellow, but this is necessary for after running changes.
-def delete():
-   # listbox.delete(listbox.curselection()) #deletes our listbox current selection #for SINGLE selection
-    for index in reversed(listbox.curselection()): #We used 'reversed' to not change the indexes after we delete an item
-        listbox.delete(index)
-    listbox.config(height=listbox.size() + 2) #to adjust our list height after we change an item.
-window = Tk()
-
-listbox = Listbox(window,fg='#fcba03', bg='black',font=('Ink free',20),
-                  selectmode=MULTIPLE #Allows you to select multiple items. #But it obly us to make some
+# def delete():
+#    listbox.delete(listbox.curselection()) #deletes our listbox current selection #for SINGLE selection
+    # for index in reversed(listbox.curselection()): #We used 'reversed' to not change the indexes after we delete an item
+    #     listbox.delete(index)
+    # listbox.config(height=listbox.size() + 2) #to adjust our list height after we change an item.
+# window = Tk()
+#
+# listbox = Listbox(window,fg='#fcba03', bg='black',font=('Ink free',20),
+#                   selectmode=MULTIPLE #Allows you to select multiple items. #But it obly us to make some
                   # changes in our code. We have to turn the functions into functions for multiples items (for loop).
-                  )
-listbox.pack()
-listbox.insert(1,"pizza") #We pick an index and place a value for that index.
-listbox.insert(2,"cake")
-listbox.insert(3,"bread")
-listbox.insert(4,"salad")
-listbox.insert(5,"chicken")
-
-listbox.config(height=listbox.size()+2) #We use .config to change any options.
-#In this case, we are configuring a height for our listbox, that height equals the listbox size. That is,
+                  # )
+# listbox.pack()
+# listbox.insert(1,"pizza") #We pick an index and place a value for that index.
+# listbox.insert(2,"cake")
+# listbox.insert(3,"bread")
+# listbox.insert(4,"salad")
+# listbox.insert(5,"chicken")
+#
+# listbox.config(height=listbox.size()+2) #We use .config to change any options.
+# In this case, we are configuring a height for our listbox, that height equals the listbox size. That is,
 #the height of our list will be adjusted by the size (amount and size of elements in) that list
 #if we add or remove an element, it will automatically change the height of our list.
 #we can add a value to that function in order to have some space in our list. This value equals to a invisible element
 #so it'll have the same font's size.
 #this code placed here only adjusts for before running changes
 
-entrybox = Entry(window)
-entrybox.pack()
+# entrybox = Entry(window)
+# entrybox.pack()
+#
+# addButton = Button(window,text='Add an item',command=add)
+# addButton.pack()
+#
+# deleteButton = Button(window,text='Delete an item',command=delete)
+# deleteButton.pack()
+#
+# submitbutton = Button(window,text='submit',command=submit)
+# submitbutton.pack()
+#
+# window.mainloop()
+# ---------------------------------------------------------------------------
 
-addButton = Button(window,text='Add an item',command=add)
-addButton.pack()
+#MESSAGE BOX =
 
-deleteButton = Button(window,text='Delete an item',command=delete)
-deleteButton.pack()
+# from tkinter import *
+# from tkinter import messagebox #import the messagebox library submodule
 
-submitbutton = Button(window,text='submit',command=submit)
-submitbutton.pack()
+# def click():
+    #messagebox.showinfo(title='This is an info messagebox', message='you are a person') #displays a simple message
+    #messagebox.showwarning(title='WARNING',message='VIRUS')#you can put within a while(True) loop to keep warning
+    #displays with an alert icon
+    #messagebox.showerror(title='ERROR',message='Something went wrong!') #displays an error icon
+    # if messagebox.askokcancel(title='Ask OK CANCEL',message='Are you sure?'): #if it's True
+    #     print ('You agreed with terms')
+    # else: #if it's False (cancel/quit)
+    #     print('You did not agree with terms')
+    #it displays a message with the OK and Cancel options. It returns True (OK) or False (Cancel).
+    # if messagebox.askretrycancel(title='Ask Retry Cancel',message='Dou you want to retry?'):
+    #     print ('You retried a thing')
+    # else:
+    #     print ('You canceled a thing')
+    # if messagebox.askretrycancel(title='Ask Retry Cancel',message='Dou you want to retry?'):
+    #     print ('You retried a thing')
+    # else:
+    #     print ('You canceled a thing')
+    # if messagebox.askyesno(title='Yes or No',message='Dou you like cake?'): #it returns a True or False answer
+    #     print ('Nice')
+    # else:
+    #     print ('Why?')
+    # answer = messagebox.askquestion(title='Ask Question',message='Dou you like pie?') #it returns a string of yes or no
+    # if answer == 'yes':
+    #     print ('Nice')
+    # else:
+    #     print ('Why?')
+    # resp = (messagebox.askyesnocancel(title='Yes No Cancel',#Returns True (Yes), False (No) or None (Cancel/quit)
+    #                                   message='Do you like to code?',
+    #                                   icon='info'))#we can set a icon, 'warning','info','error'.
+    # if resp == True:
+    #     print ('You like to code :)')
+    # elif resp == False:
+    #     print ('But is such a nice thing')
+    # else:
+    #     print('You have dodged the question')
+#
+# window = Tk()
 
-window.mainloop()
+# button = Button(window, command=click,text='click me')
+# button.pack()
+#
+# window.mainloop()
+#-------------------------------------------------------------------------------
+from tkinter import *
+from tkinter import colorchooser #submodule
+# def click():
+    # color = colorchooser.askcolor() #from the colorchooser submodule, ask color function.
+    # print (color) #prints our color RGB (Red, Green,Blue) values, and our hexadecimal representention values
+    # colorhex = color[1] #we create a second variable to store the hexadecimal value (index 1)
+    # print (colorhex) #we don't need any of these print functions rn. It's only for context.
+    # window.config(bg=colorhex) #we config our window background to be equal as the color we pick.
+    #without the print lines, we have only 3 lines of code, but we can make it into 2 or 1 line of code.
+    # colorhex = colorchooser.askcolor()[1]
+    # window.config(bg=colorhex)
+    ####### or
+    # window.config(bg=colorchooser.askcolor()[1]) #it's a nice feature for customizing things
+# window = Tk()
+# window.geometry('420x420')
+# button = Button(text='click me',command=click)
+# button.pack()
+# window.mainloop()
+#-------------------------------------------------------------------------
 
+#TEXT WIDGET/AREA  = Function like a text area, you can enter multiple lines of text
+# from tkinter import *
+
+# def submit():
+#     texto = (text.get('1.0',END)) #1.0 refers to the first index from our text area. END includes everything till end.
+#     print(texto)#you can print directly, or assign the text value to a variable to have more options to work with.
+# window = Tk()
+#
+# text = Text(window, #we have a area in our window to create some text, but we need a button to submit the input.
+#             bg='light yellow',
+#             font=('Ink Free',20), #the text area sizes corresponds directly to the font size.
+#             So the bigger the font is, the bigger the text area will be
+            # height=8, #it is the amount of characters the text area is tall.
+            # width=20, #it is the amount of characters the text area is long.
+            # padx=20,
+            # pady=20,
+            # fg='purple') #it changes the foreground (the letter's color)
+# text.pack()
+
+# submitButton = Button(window,text='submit',command=submit)
+# submitButton.pack()
+
+# window.mainloop()
+# -----------------------------------------------------------------------------
+
+#FILE DIALOG (OPEN FILE)
+
+# from tkinter import *
+# from tkinter import filedialog
+#
+# def openFile():
+#     filepath = filedialog.askopenfilename(initialdir='C:\\Users\\Vazsm\\PycharmProjects\\EstudandoPython',
+#                                           title='Open File', #it changes the filedialog's title
+#                                           filetypes=(('text files','*.txt'), #it sets the initial type of file to search
+#                                                      ('all files','*.*'))) #is an option to search for all files
+    #this is function is going to return a string that contains your file's path. So we store the value in a variable
+    #we can set the initial directory path when you open a filedialog to search for a file.
+    #print(filepath) #it returns our file's path: C:/Users/Vazsm/Desktop/termos ingles.txt
+    #the filepath may return the FileNotFoundError, when we close the filedialog without select a file.
+    #so we need to except error command.
+    # file = open(filepath,'r') #this function opens our file using the Read mode ('r').
+    # print (file.read()) #the function to read our file
+    # file.close() #it is useful to close your file after you opened it
+
+# window = Tk()
+
+# button = Button(window,text='Open File',command=openFile)
+# button.pack() #we created a button that will launch our file dialog so we can select a file.
+# window.mainloop()
+#----------------------------------------------------------------------
+
+#FILEDIALOG (SAVE A FILE) =
+#we need to create a window and place a save button, as well a text area.
+
+# from tkinter import *
+# from tkinter import filedialog
+#
+# def saveFile():
+#     file = filedialog.asksaveasfile(initialdir='C:\\Users\\Vazsm\\PycharmProjects\\EstudandoPython',
+#                                     defaultextension='.txt', #sets the default extension to save our files.
+#                                     filetypes=[('Text file','.txt'),#it needs 2 strings, one for the type name
+#                                                ('HTML file','.html'),#and one for the file extension
+#                                                ('All files','.*')])#to save the extension is '.*'
+    #this function asks us a place, a name and a file type to create our file.
+    #if we don't set a filetype to save, it will just save as file.
+    #filetext = str(text.get('1.0',END)) #stores all the texts that we have written in our text area.
+    # And we convert it into a string
+    #To get some text, we could use the console window instead of the text area
+    # filetext= input('Write something to save')
+    # if file is None:
+    #     return #it avoids a NotFoundFileError.
+    # file.write(filetext) #we write the filetext inside our file
+    # file.close()
+    #we kind of create an empty file and after we fill him with the filetext within our text area/widget.
+# window  = Tk()
+#
+# button = Button(text='Save',command=saveFile)
+# button.pack()
+#
+# text = Text(window)
+# text.pack()
+#
+# window.mainloop()
