@@ -461,3 +461,492 @@ from tkinter import colorchooser #submodule
 # text.pack()
 #
 # window.mainloop()
+#_------------------------------------------------------
+
+#MENUBAR =
+#We will create and add a menubar to a window, and we will add menus to our menubar. Each menu will function like
+#a dropdown menu with items that execute actions.
+# from tkinter import *
+#
+# def openfile():
+#     print ('File has been opened')
+# def savefile():
+#     print('File has been saved')
+# def cutfile():
+#     print('File has been cut')
+# def copyfile():
+#     print('File has been copied')
+# def pastefile():
+#     print('File has been pasted')
+#
+# window = Tk()
+#
+# img= PhotoImage(file='hotdog.png')
+#
+# menubar = Menu(window) #we have created a menu and assigned him to our window.
+# window.config(menu=menubar) #we can set the menu of the windnow as the menu that we created
+# fileMenu = Menu(menubar,tearoff=0) #to create menu tabs we need to create another menu, but add them to our menubar.
+### tearoff 0 diables the annoying line
+# menubar.add_cascade(label='File',menu=fileMenu) #it creates a dropdown for the menu tabs.
+### We assigned an area with contains a text/image (label) with the name of our menu tab.
+###We assigned a menu tab to a menubar label and it's dropdown. And now we need to create options for this fileMenu.
+# fileMenu.add_command(label='Open',command=openfile) #it creates a clickable option
+# fileMenu.add_command(label='Save',command=savefile)
+# fileMenu.add_separator() #separetes our different commands from each other within the menu
+# fileMenu.add_command(label='Exit',command=quit) #quit is a shortcut for exiting something, so we don't need a function
+#
+# editMenu = Menu(menubar,tearoff=0,font=('Ink Free',16)) #we can costumize our menus.
+# menubar.add_cascade(label='Edit',menu=editMenu)
+# editMenu.add_command(label='Cut',command=cutfile,image=img,compound='left') #we can add images to each command
+# editMenu.add_command(label='Copy',command=copyfile)
+# editMenu.add_command(label='Paste',command=pastefile)
+#
+# window.mainloop()
+# -------------------------------------------------------------------------
+
+### FRAME = A rectangular container to group and hold widgets together.
+
+# window = Tk()
+#
+# frame = Frame(window,bg='pink',bd=5,relief=SUNKEN)
+###We add a frame to our window, and we add our buttons to our frame.
+# frame.pack(side='bottom')
+##or
+# frame.place(x=10,y=80) #we place our frame by coordinates. Our widgets added to our frame moves along with our frame.
+#
+# Button(frame,text='W',font=('Arial',20),width=3).pack(side='top')
+# Button(frame,text='S',font=('Arial',20),width=3).pack(side='left')
+# Button(frame,text='A',font=('Arial',20),width=3).pack(side='left')
+# Button(frame,text='D',font=('Arial',20),width=3).pack(side='left')
+##If you don't plan in using this button again as a variable, you just need to pack it.
+##This way when we expand our window, the buttons will set apart. So, we add them to a FRAME instead of window
+#
+# window.mainloop()
+#------------------------------------------------------------------------------
+
+# WAYS TO CREATE WINDOW IN PYTHON =
+
+# from tkinter import *
+#
+# def createWindow():
+#     new_window = Tk() #it creates a new and independent window
+#     new_window = Toplevel() #Toplevel() is a new window created on top of other windows.
+    # It is linked to a 'bottom' window. If we close our bottom window, the top window will close as well.
+    #In this case, our main window is serving as the bottom window, and our new_window is serving as the top window.
+    # old_window.destroy()
+    #when we press the button, a new window will be created, and the old window will be destroyed/closed out.
+# old_window = Tk()
+#
+# Button(old_window,text='Create New Window',command=createWindow).pack()
+#
+# old_window.mainloop()
+#-----------------------------------------------------------------------------------------
+
+# WINDOW TABS =
+# In order to create tabs for our GUI application, we are going to need access to a widget called Notebook
+#That is found in a different module
+#To create tabs, we need to create frames
+
+# from tkinter import *
+# from tkinter import ttk #gives us access to several widgets that are not usually available to us.
+#
+# window = Tk()
+#
+# notebook = ttk.Notebook(window) #Widget that manages a collection of windows/displays
+#
+# tab1 = Frame(notebook) #new frame for tab1
+# tab2 = Frame(notebook) #new frame for tab2
+#
+# notebook.add(tab1,text='Tab 1') #We add to our notebook a tab frame and a tab name. notebook.add(frame,text='frame')
+# notebook.add(tab2,text='Tab 2')
+# notebook.pack(expand=True,fill='both') #expand = this will expand to fill any space.
+                                        #fill = will fill space on x and y axis.
+
+# Label(tab1,text='You are in tab1',font=('Arial',40),fg='#00FF00',bg='black',width=20,height=10).pack()
+# Label(tab2,text='You are in tab2',font=('Arial',40),fg='#00FF00',bg='black',width=20,height=10).pack()
+#We are adding a label to a tab.
+
+# window.mainloop()
+# ----------------------------------------------------------------------------
+
+# GRID() = A geometry manager that organizes widgets in a table like structure in parent
+        #Organized by rows and columns like spreadsheet. Starting by row 0 and column 0.
+
+# from tkinter import *
+#
+# window = Tk()
+#
+# titleLabel = Label(window,text='Enter your info: ',font=('Arial',12,'bold')).grid(row=0,column=0,columnspan=2)
+#
+# firstname_label = Label(window,text='First name: ',width=20).grid(row=1,column=0)
+# firstname_entry = Entry(window).grid(row=1,column=1)
+#
+# lastname_label = Label(window,text='Last name: ',width=20).grid(row=2,column=0)
+# lastname_entry = Entry(window).grid(row=2,column=1)
+#
+# emailLabel = Label(window,text='Email:',width=20).grid(row=3,column=0)
+# emailEntry = Entry(window).grid(row=3,column=1)
+#when we use pack(), the items will be placed in one big column.
+
+# submitButton = Button(window,text='Submit').grid(row=4,column=0,columnspan=2)
+# A widget can be placed within more than one column. To do that, we set a number to columnspan.
+# That number is the amount of columns that will take place, including the one that is currently in.
+#
+#The column width is directly dependent of the largest widget that it contains.
+#So we just need to set 1 widget's width, and if it is the largest, all column will follow that width
+#But this only changes the column width, not the widgets width
+# window.mainloop()
+# ---------------------------------------------------------------------------------------------------
+
+# PROGRESS BAR =
+
+# from tkinter import *
+# from tkinter.ttk import *
+# import time
+# def start():
+#     tasks = 10
+#     x = 0
+#     while x<tasks: #we create a condition that allows us to increase the progressbar a limited amount of times.
+#         time.sleep(0.5)
+#         bar['value'] +=10 #Increase the value of our progress bar by some amount.
+#         x +=1 #at the end of each iteration, x increases by one. Ten times untill it equals the tasks value.
+#         percent.set(str(int((x/tasks)*100)) +'%')
+#         text.set(str(x)+'/'+str(tasks)+' Tasks completed')
+#         window.update_idletasks() #this will update our window at each iteration
+#
+# window = Tk()
+#
+# percent= StringVar() #allows us to update a variable with new values (texts).
+# text = StringVar()
+#
+# bar = Progressbar(window,orient=HORIZONTAL,length=300)
+# bar.pack(pady=10)
+#
+# percentLabel = Label(window,textvariable=percent).pack() #textvariable so we can update this label after each iteration
+# taskLabel = Label(window,textvariable=text).pack()
+#
+# button = Button(window,text='Download',command=start).pack()
+#
+# window.mainloop()
+#--------------------------------------------------------------------------
+
+#CANVAS = Widget that is used to draw graphs, plots, images in a window
+
+# from tkinter import *
+#
+# window = Tk()
+#
+# canvas = Canvas(window,height=500,width=500,bg='green')
+# canvas.create_line(0,0,500,500,fill='orange',width=5) #when we create a line, we need a start point and an end point
+### (startX,startY,endingX,endingY)
+# canvas.create_line(0,500,500,0,fill='pink',width=5) #it's overlapping a part of the orange line because the pink
+# was created after, so it's 'prioritizing'.
+# redline = canvas.create_line(250,0,250,500,fill='red',width=5)
+#you can create a canvas object if it will be used later, by moving the graphic, or something else
+# canvas.create_rectangle(100,100,200,200,fill='#998C00') #the starting coordinates go for the top left of our rectangle.
+# The ending coordinates go for the bottom right of our rectanlge
+# canvas.create_polygon(50,10,140,70,70,200,fill='yellow',outline='black',width=3) #outline is a border for the graphic.
+#we can create several types of shapes, it depends on how many coordinates we will give.
+# coordinates = [10,20,20,30,100,200,70,50,350,91]
+#we can also pass a list/tuple as the coordinates
+# canvas.create_polygon(coordinates,fill='blue')
+# canvas.create_arc(10,10,100,100,fill='grey',style=PIESLICE,start=90,extent=180) #don't really know. #ARC,CHROD,PIESLICE.
+##start is the start position in degrees (90,180,270,360) for our arc.
+##extent is the degrees that our arc have.
+
+# canvas.create_arc(0,0,500,500,fill='red',extent=180,width=8)
+# canvas.create_arc(0,0,500,500,fill='white',start=180,extent=180,width=8)
+# canvas.create_line(0,250,500,250,fill='black',width=10)
+# canvas.create_oval(200,200,300,300,fill='white',outline='black',width=10)
+##you can think oval as a circle that is inside a square.
+# This circle has a diameter that touches the height and width of the square.
+#Our circle starts a the middle of these diameters. So we need to think where we want to place our circle
+#And think a diameter for our circle. And the startingX and startingY coordinates will have to be a diameter away from
+#the endingX and endingY coordinates.
+# canvas.pack()
+#
+#
+# window.mainloop()
+#------------------------------------------------------------------------------------------
+
+# KEYBORD EVENTS =
+
+# from tkinter import *
+
+#We can bind a key event and a function to a widget or a window. So when we press a certain key or do something, the
+#function will be triggered to perform some action for us.
+#widgets and windows have access to a bind() function.
+#So window.bind(event,function) #the bind function takes 2 arguments, a trigger and a function name.
+
+# def run(event): #we need to set ONE parameter for this function. we place 'event' as an argument.
+#     print ('You are running! You pressed: '+ event.keysym) #event.keysym corresponds to the key symbol we pressed.
+#     label.config(text=event.keysym) #this will set our label text to the key symbol we put in.
+# window = Tk()
+#
+#
+# window.bind('<w>',run)
+# window.bind('<s>',run)
+# window.bind('<a>',run)
+# window.bind('<d>',run)
+# window.bind('<Up>',run) #Responds to up arrow
+# window.bind('<Down>',run) #Responds to down arrow
+# window.bind('<Left>',run)#Responds to left arrow
+# window.bind('<Right>',run) #Responds to right arrow
+# window.bind('<Return>',run) #Responds when we press enter
+# window.bind('<Key>',run) #Responds to almost every key
+
+
+# label =Label(window,font=('Arial',50),text='Escolha uma letra')
+# label.pack()
+#--------------------------------------------------------------------------------------
+
+# MOUSE EVENTS =
+
+# from tkinter import *
+
+# def dosomething(event):
+#     print('Mouse coordinates: ' + str(event.x)+','+str(event.y))
+    #It displays where this event occurred (where in the window we clicked).
+# window =Tk()
+
+# window.bind('<Button-1>',dosomething) #Responds to mouse's left clicks
+# window.bind('<Button-2>',dosomething) #Responds when we press mousewheel.
+# window.bind('<Button-3>',dosomething) #Responds to mouse's right clicks
+# window.bind('<ButtonRelease>',dosomething) #Responds when we release the click
+# window.bind('<Enter>',dosomething) #Responds when we enter our binded window or widget. IT IS NOT the enter keyboard.
+# window.bind('<Leave>',dosomething) #Responds when we leave our binded window or widget.
+# window.bind('<Motion>',dosomething) #Responds only when the mouse is moving.
+# window.mainloop()
+#---------------------------------------------------------------------------------------
+
+# DRAG AND DROP WIDGETS =
+
+# from tkinter import *
+#
+# def dragitem(event):
+    # label.startX = event.x #we are assign a new variable/attribute from our label to where the even occurred in x axis.
+    # label.startY = event.y #only the events within our label
+    #but this way, we are only storing attributes for label1. If we want to use this function to more labels we must do:
+    # widget = event.widget #It gets the widget of the event that we are dealing and renaming as widget
+    # widget.startX = event.x
+    # widget.startY = event.y
+# def motion(event):
+    # x = label.winfo_x() - label.startX + event.x  #label.winfo_x() gets the topleft x coordinate from our label.
+    # y = label.winfo_y() - label.startY + event.y
+    # label.place(x=x,y=y)
+    #or we can apply this function to any widgets:
+    # widget = event.widget
+    # x = widget.winfo_x() - widget.startX + event.x  # label.winfo_x() gets the topleft x coordinate from our label.
+    # y = widget.winfo_y() - widget.startY + event.y
+    # widget.place(x=x,y=y)
+#the event.x is where (in x axis) my left clcik is in the window
+#the label.startX is where (in x axis we clicked in our label
+#the label.info_x() is where (in x axis) in the window is the topfelt corner from our widget.
+#We need to know the initial topleft coordinates from our widget, then we click and hold, triggering both dragitem and
+#motion functions. We subtract the label.startX(where we clicked) by event.X(where we are holding click now)
+#The result of this subtraction will be how much coordinates have changed.
+#We add the result to our initial topleft widget coordinates. So we have a new value with a new X coordinate.
+#Now, during the motion function, we place our label by the new coordinate.
+# window = Tk()
+#
+# label = Label(window,bg='red',width=10,height=5)
+# label.place(x=0,y=0)
+# label2 = Label(window,bg='blue',width=5,height=5)
+# label2.place(x=100,y=100)
+# label.bind('<Button-1>',dragitem)
+# label.bind('<B1-Motion>',motion) #responds while we hold left click
+# label2.bind('<Button-1>',dragitem)
+# label2.bind('<B1-Motion>',motion)
+# window.mainloop()
+#----------------------------------------------------------------------------------------------
+
+# MOVING WIDGETS/IMAGES ON WINDOW OR CANVAS=
+
+# from tkinter import*
+#
+# def cima(event):
+#     carLabel.place(x=carLabel.winfo_x(),y=carLabel.winfo_y()-10)
+# def baixo(event):
+#     carLabel.place(x=carLabel.winfo_x(),y=carLabel.winfo_y()+10)
+# def esquerda(event):
+#     carLabel.place(x=carLabel.winfo_x()-10,y=carLabel.winfo_y())
+# def direita(event):
+#     carLabel.place(x=carLabel.winfo_x()+10,y=carLabel.winfo_y())
+
+# window = Tk()
+# window.geometry('500x500')
+# img = PhotoImage(file='car.png')
+# carLabel = Label(window,image=img)
+# carLabel.place(x=0,y=0)
+# window.bind('<w>',cima) #it has to be binded to our window, because we don't have a way to select with keyboard?
+# window.bind('<s>',baixo)
+# window.bind('<a>',esquerda)
+# window.bind('<d>',direita)
+# window.bind('<Up>',cima)
+# window.bind('<Down>',baixo)
+# window.bind('<Left>',esquerda)
+# window.bind('<Right>',direita)
+#
+# window.mainloop()
+#---------------------------------------------------------------------------
+
+# MOVING IMAGES/WIDGETS ON CANVAS:
+
+# from tkinter import *
+#
+# def move_up(event):
+#     canvas.move(carimg,0,-10) #canvas has a move function that accepts as argmunets the canvas image we want to move
+    #followed by x and y coordinates.
+# def move_down(event):
+#     canvas.move(carimg,0, 10)
+# def move_left(event):
+#     canvas.move(carimg,-10,0)
+# def move_right(event):
+#     canvas.move(carimg,10, 0)
+
+
+
+# window = Tk()
+#
+# canvas = Canvas(window,width=500,height=500)
+# canvas.pack()
+# img = PhotoImage(file='car.png') #we create a image, then we create a canvas image, by placing x and y coordinates
+# carimg = canvas.create_image(0,0,image=img,anchor=NW) #and storing as canvas image our img.
+#The 0,0 coordinates will cut off part of our image, so we can fix it by anchoring in North West(NW).
+
+# window.bind('<w>',move_up)
+# window.bind('<s>',move_down)
+# window.bind('<a>',move_left)
+# window.bind('<d>',move_right)
+#
+# window.mainloop()
+#_---------------------------------------------------------------------------------
+
+# ANIMATIONS =
+
+# from tkinter import *
+# import time
+#
+# HEIGHT = 500 #it's a constant. A variable/value that we don't plan on changing
+# WIDTH = 500 #constants are commonly all uppercase.
+# xvelocity = 2 #velocity/speed that our image is going to move in the x axis
+# yvelocity = 5 #velocity/speed that our image is going to move in the y axis
+# window = Tk()
+#
+# canvas= Canvas(window,width=WIDTH,height=HEIGHT)
+# canvas.pack()
+#
+# spaceimg = PhotoImage(file='space.png') #the background must be created first, before all others canvas images
+# background_photo = canvas.create_image(0,0,image=spaceimg)
+#
+# img = PhotoImage(file='car.png')
+# carimg = canvas.create_image(0,0,image=img,anchor=NW)
+#
+#
+# imgHeight = img.height()
+# imgWidth = img.width()
+#
+# while True: #or can be while running. It returns a boolean value, that's only true when it's running,
+# and false when it's paused or when you quit. It is most used in games.
+#     coordinates = canvas.coords(carimg) #get the coordinates where our image is located
+    ##print(coordinates) #print the coordinates #first number is the x position, and the second number is the y position
+    # if ((coordinates[0]>= (WIDTH -imgWidth)) or (coordinates[0]<0)):
+        #if our x coordinates is lesser than 0 or equal/greater than (500-Our image Width):
+        # xvelocity = -xvelocity #or = xvelocity*-1 #this way the image will return after it reaches the border.
+    # if ((coordinates[1]<0) or (coordinates[1]>=(500-imgHeight))):
+    #     yvelocity = -yvelocity
+#this way our image can bounce back when touches the borders.
+    # canvas.move(carimg,xvelocity,yvelocity)
+    #takes 3 arguments, what do you want to move, the x coordinate and the y coordinate
+    #in this case, our coordinates will be our x an y velocities. That will increase our coordinate by their value
+    # after each iteration. So it will move xvelocity pixels to the right
+    # window.update() #we will update to any changes
+    # time.sleep(0.01)
+#
+# window.mainloop()
+#-------------------------------------------------------------------------------------------------
+
+# MULTIPLE ANIMATIONS =
+
+# from tkinter import *
+# import time
+#
+# WIDTH = 500 #CONSTANTS
+# HEIGHT = 500
+#
+# class Ball(): #we are going to use multiple types of balls, so we might aswell create a class
+#     def __init__(self,canvas,x,y,diameter,xvelocity,yvelocity,color): #our constructor
+#         self.canvas = canvas
+#         self.image = canvas.create_oval(x,y,diameter,diameter,fill=color) #we create a canvas image/ball
+#         self.xvelocity = xvelocity
+#         self.yvelocity = yvelocity
+#
+#     def move(self): #we create a function that will move our balls.
+#         coordinates = self.canvas.coords(self.image)
+        #gets the topleft image coordinate and bottom right image coordinate inside our canvas.
+        #it will be like [topleftX,topleftY,bottomrightX,bottomrightY]
+        # if (coordinates[2])>=(self.canvas.winfo_width()) or coordinates[0]<0:
+            #if our bottomrightX is greater than the canvas widht. Or if our topleftX is lesser than 0:
+            #Our image bounces back at the right and left border from our canvas
+            # self.xvelocity = -self.xvelocity #change direction
+        # if (coordinates[3])>=(self.canvas.winfo_height()) or coordinates[1]<0:
+        #     if our bottomrightY is greater than the canvas height. Or if our topleftY is lesser than 0:
+            #Our image bounces back at the top and the bottom of our canvas.
+            # self.yvelocity = -self.yvelocity #change direction
+        # self.canvas.move(self.image,self.xvelocity,self.yvelocity)
+        #we are going to move inside our canvas: our image, by the x and y velocity
+
+#Our ball class is acting like a blueprint for how balls should be created and the behavior that they exhibit
+# window = Tk()
+
+# canvas = Canvas(window,width=WIDTH,height=HEIGHT) #We create animations using canvas.
+# canvas.pack()
+#
+# volley_ball = Ball(canvas,0,0,100,1,1,'yellow') #we pass a canvas to wich we will be drawing our ball.
+#we pass xy coordinates to place our ball inside our canvas
+#we pass only a diameter because it is a circle, so the width and height are the same
+#we pass a x an y velocity. That will be the amount our ball will move within the x and y axis.
+#we pass a color to fill our ball.
+# basket_ball = Ball(canvas,0,0,100,2,4,'orange')
+# tennis_ball = Ball(canvas,0,0,30,8,6,'green')
+#
+# while True:
+#     volley_ball.move()#while true, we will be calling our move function from our Ball class.
+#     basket_ball.move()
+#     tennis_ball.move()
+#     window.update() #we update our window at each iteration
+#     time.sleep(0.01)
+# window.mainloop()
+#------------------------------------------------------------------------------------------
+
+# CLOCK PROGRAM =
+
+# from tkinter import *
+# from time import *
+# def update(): #function to update time every second.
+#     time_string = strftime('%H:%M:%S') #this is a time function that returns us the current time
+#     based on the directives we selected
+#     Conver a tuple of structure_time to a string as specified by the format argument (directives)
+    # day_string = strftime('%A')
+    # dayLabel.config(text=day_string)
+    # date_string = strftime('%B %d, %Y')
+    # dateLabel.config(text=date_string)
+    # timeLabel.config(text=time_string) #it will update our timeLabel to display the variable time.
+    # timeLabel.after(1000,update) #this function stablish a delay (in milisseconds), and after that, it calls a function.
+    #In this case, we're calling the same function, that is a recursive function. this updates only a widget.
+    # window.after(1000,update) #this updates all the window.
+# window = Tk()
+#
+# timeLabel = Label(window,font=('Arial',50),fg='green',bg='black')
+# timeLabel.pack()
+#
+# dayLabel = Label(window,font=('Ink Free',25))
+# dayLabel.pack()
+#
+# dateLabel = Label(window,font=('Ink Free',25))
+# dateLabel.pack()
+#
+# update() #we call the update function
+
+#window.mainloop()
+#--------------------------------------------------------------------------------
