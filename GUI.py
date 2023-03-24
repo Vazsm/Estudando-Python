@@ -1,4 +1,6 @@
 #GRAPHICAL USER INTERFACE (GUI):
+import email.policy
+import time
 from tkinter import *
 #we import everything within tkinter module
 
@@ -925,18 +927,18 @@ from tkinter import colorchooser #submodule
 # from time import *
 # def update(): #function to update time every second.
 #     time_string = strftime('%H:%M:%S') #this is a time function that returns us the current time
-#     based on the directives we selected
-#     Conver a tuple of structure_time to a string as specified by the format argument (directives)
+    # based on the directives we selected
+    # Conver a tuple of structure_time to a string as specified by the format argument (directives)
     # day_string = strftime('%A')
     # dayLabel.config(text=day_string)
     # date_string = strftime('%B %d, %Y')
     # dateLabel.config(text=date_string)
     # timeLabel.config(text=time_string) #it will update our timeLabel to display the variable time.
     # timeLabel.after(1000,update) #this function stablish a delay (in milisseconds), and after that, it calls a function.
-    #In this case, we're calling the same function, that is a recursive function. this updates only a widget.
+    # In this case, we're calling the same function, that is a recursive function. this updates only a widget.
     # window.after(1000,update) #this updates all the window.
 # window = Tk()
-#
+
 # timeLabel = Label(window,font=('Arial',50),fg='green',bg='black')
 # timeLabel.pack()
 #
@@ -948,5 +950,108 @@ from tkinter import colorchooser #submodule
 #
 # update() #we call the update function
 
-#window.mainloop()
+# window.mainloop()
 #--------------------------------------------------------------------------------
+
+# SEND EMAIL =
+
+# import smtplib #simple mail transfer protocal library
+#
+# sender = 'sender@gmail.com'
+# receiver = 'receiver@email'
+# password = 'passowrd123'
+# subject = 'python email test'
+# body = 'I wrote an email'
+#
+# message = f"""From: {sender} #triple quotes string can span multiple lines of text
+# To: {receiver}
+# Subject: {subject}\n
+# {body}
+# """
+#
+# server = smtplib.SMTP('smtp.gmail.com',587) #we create a server object #mail submission
+# server.starttls() #transport layer security
+# try :
+#     server.login(sender,password)
+#     print ('Logged in')
+#     server.sendmail(sender,receiver,message)
+#     print('Email has been sent')
+# except smtplib.SMTPAuthenticationError:
+#     print('Unable to sign in.')
+# except smtplib.SMTPServerDisconnected:
+#     print('Connection unexpectedly closed')
+#-----------------------------------------------------------------------------------------
+
+# RUN PYTHON FILES IN COMMAND PROMPT
+# print ('hello world')
+# print (input('What is your name?'))
+
+##run .py files with cmd
+
+##save file as .py (python file)
+##go to command prompt
+##navigate to your directory with your file: cd C:\Users\Vazsm\Desktop ##cd means change directory. Paste your file path
+##invoke python interpreter + script: python + name of the .py file #python GUI.py
+
+#Go to file, save as. Pick a name for your python file. Pick a location to save your file
+# -------------------------------------------------------------------------------------
+
+# Python PIP
+#pip = package manager for packages and modules from Python Package Index (pypi.org)
+#included for Python versions 3.4 +
+#open command prompt
+##      help: pip
+##      check: pip --version
+##      update: pip install --upgrade pip
+##      installed packages: pip list
+##      check outdated packages: pip list --outdated
+##      update package: pip install ''package name'' --upgrade
+##      install a package: pip install ''package name''
+#----------------------------------------------------------------------------------------------
+
+# .PY to .EXE =
+
+### Windows defender may prevent you from running.
+### Make sure pip and pyinstaller are installed/updated
+
+### cd (change directory) to directory that contains your .py file
+
+###py installer:
+###         F               all in one file
+###         w               removes terminal window
+###         i icon.ico      adds custom icon to .exe
+###         clock.py        name of your main python file
+
+### .EXE is located in the dist folder
+
+## We create a new folder to contain our file, in order to maintain things clean.
+
+from tkinter import *
+from time import *
+import time
+
+def clock():
+    text = strftime('%H:%M:%S')
+    timelabel.config(text=text)
+    daytext = strftime('%A')
+    daylabel.config(text=daytext)
+    datetext = strftime('%d, %B, %Y')
+    datelabel.config(text=datetext)
+    window.after(1000,clock)
+
+window = Tk()
+
+
+daylabel = Label(window, font=('Ink free',20),width=20)
+daylabel.pack()
+
+timelabel = Label(window, font=('Arial',30),fg='green',bg='black',width=20)
+timelabel.pack()
+
+datelabel = Label(window,font=('Arial',20),width=20)
+datelabel.pack()
+clock()
+
+
+
+window.mainloop()
